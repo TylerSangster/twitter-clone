@@ -1,0 +1,11 @@
+require 'test_helper'
+
+class TweetTest < ActiveSupport::TestCase
+  test "can't be longer than 140 characters" do
+  	tweet = Tweet.new(content: "ok")
+  	assert tweet.valid?
+
+  	tweet.content = "12345678901290123457890123456789012345689012345678901235678901234567890123456789012390123590123456789012345678901234567890123456789012345678901234567890123456890123456789012345678901234567890"
+  	assert !tweet.valid?
+  end
+end

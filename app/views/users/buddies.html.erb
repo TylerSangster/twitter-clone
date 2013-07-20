@@ -1,0 +1,25 @@
+<% if current_user %>
+<div id="createRibbit" class="panel right">
+    <h1>Create a Tweet</h1>
+    <p>
+    <%= form_for @tweet do |f| %>
+        <%= f.textarea :content, class: 'ribbitText' %>
+        <%= f.submit "TWEET!" %>
+    <% end %>
+    </p>
+</div>
+<% end %>
+<div class="panel left">
+    <h1>Buddies' Tweets</h1>
+    <% @tweets.each do |tweet| %>
+        <div class="ribbitWrapper">
+            <a href="<%= user_path ribbit.user %>">
+            <img class="avatar" src="<%= tweet.user.avatar_url %>">
+            <span class="name"><%= tweet.user.name %></span> 
+            </a>
+            @<%= tweet.user.username %> 
+            <span class="time"><%= time_ago_in_words(tweet.created_at) %></span>
+            <p> <%= tweet.content %> </p>
+        </div>
+    <% end %>
+</div>
